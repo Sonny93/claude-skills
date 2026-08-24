@@ -1,0 +1,11 @@
+# Repo scope: only these skills are public. Everything else in
+# ~/.claude/skills (private skills, symlinks) stays untracked.
+*
+!.gitignore
+!README.md
+!adonis-conventions/
+!adonis-conventions/**
+!plan-phase/
+!plan-phase/**
+!react-conventions/
+!react-conventions/**
