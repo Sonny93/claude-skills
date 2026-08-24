@@ -7,10 +7,11 @@ Skills persos pour [Claude Code](https://claude.com/claude-code). Synchronise ce
 - `adonis-conventions` — conventions stack AdonisJS
 - `plan-phase` — exécute la prochaine phase d'un plan multi-phases local
 - `react-conventions` — conventions et archi React
+- `commit` — commit propre en Conventional Commits, sans attribution assistant
 
 Chaque skill vit dans `~/.claude/skills/<nom>/SKILL.md`. Claude Code les charge automatiquement au démarrage depuis ce dossier.
 
-Ce repo ne contient QUE ces 3 skills (voir `.gitignore`). Les autres skills présents dans `~/.claude/skills` sur la machine d'origine (persos/privés) ne sont pas versionnés ici.
+Ce repo ne contient QUE ces skills (voir `.gitignore`). Les autres skills présents dans `~/.claude/skills` sur la machine d'origine (persos/privés) ne sont pas versionnés ici.
 
 ## Installer sur une nouvelle machine
 
@@ -19,7 +20,7 @@ mkdir -p ~/.claude
 git clone https://github.com/Sonny93/claude-skills.git ~/.claude/skills-repo
 
 mkdir -p ~/.claude/skills
-for skill in adonis-conventions plan-phase react-conventions; do
+for skill in adonis-conventions plan-phase react-conventions commit; do
   ln -s ~/.claude/skills-repo/$skill ~/.claude/skills/$skill
 done
 ```

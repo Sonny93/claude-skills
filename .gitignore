@@ -9,3 +9,5 @@
 !plan-phase/**
 !react-conventions/
 !react-conventions/**
+!commit/
+!commit/**
