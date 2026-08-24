@@ -3,6 +3,7 @@
 *
 !.gitignore
 !README.md
+!sync.sh
 !adonis-conventions/
 !adonis-conventions/**
 !plan-phase/

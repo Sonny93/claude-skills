@@ -13,21 +13,23 @@ Chaque skill vit dans `~/.claude/skills/<nom>/SKILL.md`. Claude Code les charge 
 
 Ce repo ne contient QUE ces skills (voir `.gitignore`). Les autres skills présents dans `~/.claude/skills` sur la machine d'origine (persos/privés) ne sont pas versionnés ici.
 
-## Installer sur une nouvelle machine
+## Installer / synchroniser sur une machine
+
+Un seul script fait tout: clone (première fois) ou pull (fois suivantes), puis symlink tout skill du repo pas encore lié dans `~/.claude/skills`. Idempotent — relance-le à chaque fois qu'un skill est ajouté/modifié sur le repo, il rattrape tout seul.
 
 ```bash
-mkdir -p ~/.claude
-git clone https://github.com/Sonny93/claude-skills.git ~/.claude/skills-repo
+curl -fsSL https://raw.githubusercontent.com/Sonny93/claude-skills/main/sync.sh | bash
+```
 
-mkdir -p ~/.claude/skills
-for skill in adonis-conventions plan-phase react-conventions commit; do
-  ln -s ~/.claude/skills-repo/$skill ~/.claude/skills/$skill
-done
+Ou en local si déjà cloné:
+
+```bash
+bash ~/.claude/skills-repo/sync.sh
 ```
 
 Symlink plutôt que copie: un `git pull` dans `~/.claude/skills-repo` met à jour direct le skill utilisé par Claude Code, sans manip supplémentaire.
 
-Si `~/.claude/skills` a déjà des skills persos dessus (dossiers normaux, pas de conflit de nom), les symlinks cohabitent sans souci à côté.
+Si `~/.claude/skills` a déjà des skills persos dessus (dossiers normaux, pas de conflit de nom), les symlinks cohabitent sans souci à côté. Le script skip tout `target` qui existe déjà et n'est pas un symlink (ne touche jamais à un skill perso).
 
 ## Mettre à jour un skill
 
@@ -40,14 +42,7 @@ git commit -m "update: <skill> - <quoi>"
 git push
 ```
 
-Sur les autres machines:
-
-```bash
-cd ~/.claude/skills-repo
-git pull
-```
-
-(Rien à refaire côté `~/.claude/skills`, les symlinks pointent déjà dessus.)
+Sur les autres machines: relance `sync.sh` (voir au-dessus) — pull + symlink des nouveaux skills en une commande.
 
 ## Ajouter un nouveau skill au repo plus tard
 
