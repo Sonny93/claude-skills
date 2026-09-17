@@ -53,15 +53,12 @@ Read the full plan file. Identify:
 Do the work for that phase only — not the next one, even if it looks
 quick. One phase per invocation.
 
-For sub-tasks that are simple, well-scoped, and low-judgment (mechanical
-renames, repetitive boilerplate, single-file additions following an
-established pattern), delegate to an Agent with a cheaper model override
-(`model: "haiku"` or `"sonnet"`, whichever is cheaper than the current
-session's model) instead of doing them inline. Give that agent a
-self-contained prompt: exact files, exact pattern, exact verification
-command. Reserve the current model for judgment calls — architecture,
-naming, API design, ambiguous trade-offs — and for spot-checking the
-delegated output rather than producing it.
+Delegate the code writing to the `implementer` subagent (Sonnet) instead
+of doing it inline. Give it a self-contained brief: exact files, exact
+pattern, locked decisions, exact verification command. Reserve the
+current model for judgment calls — architecture, naming, API design,
+ambiguous trade-offs — and for reviewing the delegated diff rather than
+producing it.
 
 Follow whatever project-specific conventions apply in the repo
 (framework skills, CLAUDE.md, existing patterns).
